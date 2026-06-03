@@ -24,7 +24,9 @@ export const getCurrentWeather = async (city: string) => {
     if (axios.isAxiosError(error)) {
       const message =
         error.response?.data?.message || error.message || "Unknown API error";
-      throw new Error(`Weather API request failed: ${message}`);
+      throw new Error(`Weather API request failed: ${message}`, {
+        cause: error,
+      });
     }
 
     throw error;
@@ -45,7 +47,9 @@ export const getForecast = async (city: string) => {
     if (axios.isAxiosError(error)) {
       const message =
         error.response?.data?.message || error.message || "Unknown API error";
-      throw new Error(`Weather API request failed: ${message}`);
+      throw new Error(`Weather API request failed: ${message}`, {
+        cause: error,
+      });
     }
 
     throw error;

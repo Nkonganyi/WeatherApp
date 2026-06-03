@@ -1,0 +1,20 @@
+.current-weather-loading {
+  text-align: center;
+  padding: 2rem;
+}
+
+.current-weather-empty {
+  text-align: center;
+}
+
+.current-weather {
+  text-align: center;
+}
+
+.current-weather-temp {
+  font-size: 5rem;
+}
+
+.current-weather-location {
+  margin-top: 2rem;
+}

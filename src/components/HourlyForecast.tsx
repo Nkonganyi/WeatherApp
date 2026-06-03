@@ -1,21 +1,15 @@
-import type { HourlyForecast as HourType, } from "../types/Weather";
+import "../styles/HourlyForecast.css";
+import type { HourlyForecast as HourType } from "../types/Weather";
 
 type Props = {
   hourlyForecast: HourType[];
 };
-
 function HourlyForecast({
   hourlyForecast,
 }: Props) {
   return (
     <>
-      <h2
-        style={{
-          marginBottom: "1rem",
-        }}
-      >
-        Next 24 Hours
-      </h2>
+      <h2 className="section-title">Next 24 Hours</h2>
 
       <div className="hourly-grid">
         {hourlyForecast.map(

@@ -1,9 +1,9 @@
+import "../styles/Forecast.css";
 import type { ForecastDay } from "../types/Weather";
 
 type Props = {
   forecast: ForecastDay[];
 };
-
 function Forecast({
   forecast,
 }: Props) {
@@ -14,13 +14,7 @@ function Forecast({
       <div className="forecast-grid">
 
         {forecast.map((day) => (
-          <div
-            key={day.date}
-            className="weather-card"
-            style={{
-              textAlign: "center",
-            }}
-          >
+          <div key={day.date} className="weather-card">
             <h4>
               {new Date(
                 day.date

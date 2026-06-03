@@ -12,9 +12,26 @@
 .search-btn {
   padding: 10px 16px;
 }
+
 .app {
   display: flex;
   min-height: 100vh;
+}
+
+.app.default {
+  background: #100e1d;
+}
+
+.app.rain {
+  background: #3f4c6b;
+}
+
+.app.cloud {
+  background: #4b5d67;
+}
+
+.app.clear {
+  background: #3a6073;
 }
 
 .sidebar {
@@ -26,4 +43,51 @@
 .main-content {
   flex: 1;
   padding: 2rem;
+}
+
+.unit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: tomato;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.recent-searches {
+  margin-top: 1rem;
+}
+
+.recent-search-button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.weather-card {
+  text-align: center;
+}
+
+.forecast-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.hourly-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }

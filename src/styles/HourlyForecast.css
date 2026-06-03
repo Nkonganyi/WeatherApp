@@ -1,0 +1,9 @@
+.section-title {
+  margin-bottom: 1rem;
+}
+
+.hourly-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}

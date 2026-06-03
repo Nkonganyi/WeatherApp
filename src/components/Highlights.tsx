@@ -14,14 +14,7 @@ function Highlights({
 
   return (
     <>
-      <h2
-        style={{
-          marginTop: "2rem",
-          marginBottom: "1rem",
-        }}
-      >
-        Today's Highlights
-      </h2>
+      <h2 className="section-title">Today's Highlights</h2>
 
       <div className="highlights-grid">
 

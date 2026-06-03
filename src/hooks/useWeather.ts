@@ -1,6 +1,16 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import type { WeatherData, ForecastDay, HourlyForecast } from "../types/Weather";
 import { getCurrentWeather, getForecast } from "../services/WeatherService";
+
+type ForecastApiItem = {
+  dt_txt: string;
+  main: {
+    temp_min: number;
+    temp_max: number;
+    temp: number;
+  };
+  weather: [{ icon: string }];
+};
 
 export function useWeather() {
   const [weather, setWeather] =
@@ -18,20 +28,19 @@ export function useWeather() {
   const [error, setError] =
     useState("");
 
-  const searchWeather = async (
-    city: string
-  ) => {
-    setLoading(true);
-    setError("");
+  const searchWeather = useCallback(
+    async (city: string) => {
+      setLoading(true);
+      setError("");
 
-    try {
-      const weatherData =
-        await getCurrentWeather(city);
+      try {
+        const weatherData =
+          await getCurrentWeather(city);
 
-      const forecastData =
-        await getForecast(city);
+        const forecastData =
+          await getForecast(city);
 
-      setWeather({
+        setWeather({
         city: weatherData.name,
         country: weatherData.sys.country,
         temperature:
@@ -53,52 +62,39 @@ export function useWeather() {
             .icon,
       });
 
-      const dailyForecast =
-        forecastData.list
-          .filter(
-            (
-              _: unknown,
-              index: number
-            ) => index % 8 === 0
-          )
-          .slice(0, 5)
-          .map((item: any) => ({
-            date: item.dt_txt,
-            tempMin:
-              item.main.temp_min,
-            tempMax:
-              item.main.temp_max,
-            icon:
-              item.weather[0].icon,
-          }));
+      const forecastItems =
+        forecastData.list as ForecastApiItem[];
 
-      setForecast(
-        dailyForecast
-      );
-
-    const next24Hours =
-    forecastData.list
-        .slice(0, 8)
-        .map((item: any) => ({
-        time: item.dt_txt,
-        temperature:
-            item.main.temp,
-        icon:
-            item.weather[0].icon,
+      const dailyForecast = forecastItems
+        .filter((_, index: number) => index % 8 === 0)
+        .slice(0, 5)
+        .map((item) => ({
+          date: item.dt_txt,
+          tempMin: item.main.temp_min,
+          tempMax: item.main.temp_max,
+          icon: item.weather[0].icon,
         }));
 
-    setHourlyForecast(
-    next24Hours
-    );
+      setForecast(dailyForecast);
 
-    } catch (error) {
+      const next24Hours = forecastItems
+        .slice(0, 8)
+        .map((item) => ({
+          time: item.dt_txt,
+          temperature: item.main.temp,
+          icon: item.weather[0].icon,
+        }));
+
+      setHourlyForecast(next24Hours);
+    } catch (err) {
+      console.error(err);
       setError(
         "City not found or weather service unavailable."
       );
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   return {
     weather,

@@ -31,18 +31,9 @@ function SearchBar({ onSearch, onCurrentLocation }: SearchBarProps) {
       placeholder="Search city..."
       value={city}
       onChange={(e) => setCity(e.target.value)}
-      style={{
-        padding: "12px",
-      }}
     />
 
-    <button
-      type="submit"
-      style={{
-        padding: "12px",
-        cursor: "pointer",
-      }}
-    >
+    <button type="submit">
       Search
     </button>
 
