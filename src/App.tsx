@@ -18,48 +18,32 @@ function App() {
       searchWeather,
     } = useWeather();
 
-    const [unit, setUnit] =
-    useState<"C" | "F">("C");
+    const [unit, setUnit] = useState<"C" | "F">("C");
 
-    const [
-      showSearch,
-      setShowSearch,
-    ] = useState(false);
+    const [showSearch, setShowSearch,] = useState(false);
 
-    const [
-      recentSearches,
-      setRecentSearches,
-    ] = useState<string[]>([]);
+    const [recentSearches, setRecentSearches,] = useState<string[]>([]);
 
     useEffect(() => {
-      const lastCity =
-        localStorage.getItem(
-          "lastCity"
-        );
+      const lastCity = localStorage.getItem("lastCity");
 
-      searchWeather(
-        lastCity ||
-          "Yaounde"
-      );
-    }, [searchWeather]);
+      searchWeather(lastCity || "Yaounde");
+    }, 
+    [searchWeather]);
 
-  const handleCurrentLocation =
-  () => {
+  const handleCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        const lat =
-          position.coords.latitude;
+        const lat = position.coords.latitude;
 
-        const lon =
-          position.coords.longitude;
+        const lon = position.coords.longitude;
 
         const response =
           await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_WEATHER_API_KEY}&units=metric`
           );
 
-        const data =
-          await response.json();
+        const data = await response.json();
 
         searchWeather(data.name);
         setShowSearch(false);
@@ -88,11 +72,7 @@ function App() {
                 localStorage.setItem("lastCity", city);
                 searchWeather(city);
                 setRecentSearches(
-                  (prev) =>
-                    [city, ...prev.filter((c) => c !== city)].slice(
-                      0,
-                      5
-                    )
+                  (prev) => [city, ...prev.filter((c) => c !== city)].slice( 0, 5)
                 );
                 setShowSearch(false);
               }}
@@ -124,6 +104,7 @@ function App() {
           weather={weather}
           loading={loading}
           unit={unit}
+          todayForecast={forecast.length > 0 ? forecast[0] : null}
         />
 
         <section className="cities-sidebar">
