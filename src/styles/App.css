@@ -1,0 +1,29 @@
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+}
+
+.search-btn {
+  padding: 10px 16px;
+}
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 350px;
+  background: #1e213a;
+  padding: 2rem;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
