@@ -1,9 +1,49 @@
 .section-title {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .hourly-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.hourly-grid .weather-card {
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.95rem;
+  align-items: center;
+  text-align: center;
+}
+
+.hourly-grid svg {
+  width: 2.25rem;
+  height: 2.25rem;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  margin: 0 auto;
+}
+
+.hourly-grid .weather-card:hover svg {
+  opacity: 1;
+}
+
+.hourly-grid p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hourly-grid h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.hourly-grid h3 + p {
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
 }

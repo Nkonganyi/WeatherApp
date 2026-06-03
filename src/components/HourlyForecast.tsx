@@ -3,9 +3,15 @@ import type { HourlyForecast as HourType } from "../types/Weather";
 
 type Props = {
   hourlyForecast: HourType[];
+  unit: "C" | "F";
 };
+
+const formatTemp = (temp: number, unit: "C" | "F") =>
+  `${Math.round(unit === "C" ? temp : temp * 9 / 5 + 32)}°${unit}`;
+
 function HourlyForecast({
   hourlyForecast,
+  unit,
 }: Props) {
   return (
     <>
@@ -36,12 +42,7 @@ function HourlyForecast({
                 alt=""
               />
 
-              <h3>
-                {Math.round(
-                  hour.temperature
-                )}
-                °
-              </h3>
+              <h3>{formatTemp(hour.temperature, unit)}</h3>
             </div>
           )
         )}

@@ -3,13 +3,18 @@ import type { ForecastDay } from "../types/Weather";
 
 type Props = {
   forecast: ForecastDay[];
+  unit: "C" | "F";
 };
+
+const formatTemp = (temp: number, unit: "C" | "F") =>
+  `${Math.round(unit === "C" ? temp : temp * 9 / 5 + 32)}°${unit}`;
+
 function Forecast({
   forecast,
+  unit,
 }: Props) {
   return (
     <div>
-      <h2>5 Day Forecast</h2>
 
       <div className="forecast-grid">
 
@@ -27,15 +32,11 @@ function Forecast({
             />
 
             <p>
-              Max:
-              {" "}
-              {Math.round(day.tempMax)}°
+              Max: {formatTemp(day.tempMax, unit)}
             </p>
 
             <p>
-              Min:
-              {" "}
-              {Math.round(day.tempMin)}°
+              Min: {formatTemp(day.tempMin, unit)}
             </p>
           </div>
         ))}

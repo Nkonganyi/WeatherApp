@@ -125,44 +125,56 @@ function App() {
           loading={loading}
           unit={unit}
         />
+
+        <section className="cities-sidebar">
+          <h3 className="section-title">Major Cities</h3>
+          <div className="cities-sidebar-grid">
+            <CityCard city="London" unit={unit} />
+            <CityCard city="Paris" unit={unit} />
+            <CityCard city="Tokyo" unit={unit} />
+          </div>
+        </section>
       </aside>
 
       <main className="main-content">
-        <div className="unit-buttons">
-          <button
-            className={unit === "C" ? "unit-active" : ""}
-            onClick={() => setUnit("C")}
-          >
-            °C
-          </button>
+        <div className="main-header">
+          <div className="main-header-left">
+            {error && (
+              <p className="error-message">{error}</p>
+            )}
+          </div>
+          <div className="main-header-right">
+            <div className="unit-buttons">
+              <button
+                className={unit === "C" ? "unit-active" : ""}
+                onClick={() => setUnit("C")}
+              >
+                °C
+              </button>
 
-          <button
-            className={unit === "F" ? "unit-active" : ""}
-            onClick={() => setUnit("F")}
-          >
-            °F
-          </button>
+              <button
+                className={unit === "F" ? "unit-active" : ""}
+                onClick={() => setUnit("F")}
+              >
+                °F
+              </button>
+            </div>
+          </div>
         </div>
 
-        {error && (
-          <p className="error-message">{error}</p>
-        )}
+        <section className="forecast-section">
+          <HourlyForecast
+            hourlyForecast={hourlyForecast}
+            unit={unit}
+          />
+        </section>
 
-        <HourlyForecast
-          hourlyForecast={ hourlyForecast }
-        />
-    
-        <Forecast
-          forecast={forecast}
-        />
+        <section className="forecast-section">
+          <h2 className="section-title">5-Day Forecast</h2>
+          <Forecast forecast={forecast} unit={unit} />
+        </section>
+
         <Highlights weather={weather} />
-        <h2 className="section-title">Major Cities</h2>
-
-        <div className="forecast-grid">
-          <CityCard city="London" />
-          <CityCard city="Paris" />
-          <CityCard city="Tokyo" />
-        </div>
 
         <footer className="footer">
           Built with React + TypeScript
