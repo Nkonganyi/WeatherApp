@@ -47,3 +47,78 @@
   font-size: 0.85rem;
   margin-top: 0.25rem;
 }
+
+.hourly-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hourly-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chart-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f7f8ff;
+}
+
+.chart-subtitle {
+  margin: 0.25rem 0 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+}
+
+.chart-unit {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1rem;
+  border-radius: 18px;
+  color: #f7f8ff;
+  font-weight: 700;
+}
+
+.hourly-chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-grid {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+  stroke-dasharray: 6 6;
+}
+
+.chart-area {
+  fill: url(#fillGradient);
+}
+
+.chart-line {
+  fill: none;
+  stroke: url(#lineGradient);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  fill: #ffffff;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+.chart-dot:hover {
+  transform: scale(1.15);
+}
+
+.chart-label {
+  font-size: 0.75rem;
+  fill: rgba(255, 255, 255, 0.85);
+}
